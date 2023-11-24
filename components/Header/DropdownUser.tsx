@@ -54,6 +54,7 @@ const App = () => {
   });
 
   const handleLogout = () => {
+    // logout session
     dispatch(logout())
     router.push('/auth/signin')
     Swal.fire({
