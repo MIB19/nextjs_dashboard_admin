@@ -150,10 +150,10 @@ const ECommerce: React.FC = () => {
 
       <div className="grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
         <Weather />
-        <div className="col-span-8 flex flex-col gap-6">
+        <div className="col-span-12 md:col-span-8 flex flex-col gap-6">
           <ChartOne />
           {/* balance section */}
-          <div className="grid grid-cols-2 gap-4 lg:gap-6 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 w-full">
             {/* current balance section */}
             <div className="w-full rounded-xl p-5 flex flex-row justify-between bg-white dark:bg-boxdark">
               <div className="flex flex-col items-center h-36 justify-between">
