@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Swal from 'sweetalert2'
 import { store, persistor } from '../../store/store'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
+import { useAppDispatch } from "@/hooks/storeHooks";
+import { logout } from "@/store/userSlice";
+import { useRouter } from "next/navigation";
 
 export default function DropdownUser() {
   return (
@@ -16,6 +20,8 @@ export default function DropdownUser() {
 }
 
 const App = () => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef<any>(null);
@@ -46,6 +52,18 @@ const App = () => {
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   });
+
+  const handleLogout = () => {
+    dispatch(logout())
+    router.push('/auth/signin')
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Berhasil Log Out !",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
 
   return (
     <div className="relative">
@@ -170,7 +188,7 @@ const App = () => {
             </Link>
           </li>
         </ul>
-        <button className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+        <button className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base" onClick={handleLogout}>
           <svg
             className="fill-current"
             width="22"
